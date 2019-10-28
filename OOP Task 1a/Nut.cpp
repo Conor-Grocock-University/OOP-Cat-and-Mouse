@@ -4,10 +4,16 @@
 Nut::Nut() : symbol(NUT)
 {
 	place_nut();
+
 }
+
 Nut::~Nut()
 {
 
+}
+
+void Nut::set_collected(bool collected) {
+	this->collected = collected;
 }
 
 int Nut::get_x() const
@@ -25,19 +31,19 @@ char Nut::get_symbol() const
 	return this->symbol;
 }
 
-/*
-bool Nut::has_been_collected(const int x, const int y) const
-{
-
-}
-
 bool Nut::is_at_position(const int x, const int y) const
 {
-
+	return (this->x == x) && (this->y == y);
 }
-*/
+
+bool Nut::has_been_collected() const
+{
+	return this->collected;
+}
+
+
 void Nut::place_nut()
 {
-	x = 10;
-	y = 5;
+	x = 17;
+	y = 8;
 }

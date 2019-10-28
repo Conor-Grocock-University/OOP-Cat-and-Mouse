@@ -2,114 +2,122 @@
 
 void Game::set_up()
 {
-   // set up the holes
-   underground.set_hole_no_at_position(0, 4, 3);
-   underground.set_hole_no_at_position(1, 15, 10);
-   underground.set_hole_no_at_position(2, 7, 15);
-   
-   // mouse state already set up in its contructor
+	// set up the holes
+	underground.set_hole_no_at_position(0, 4, 3);
+	underground.set_hole_no_at_position(1, 15, 10);
+	underground.set_hole_no_at_position(2, 7, 15);
 
-   // set up snake
-   snake.position_at_random();
-   snake.spot_mouse(&mouse);
-   nut.place_nut();
+	// mouse state already set up in its contructor
+
+	// set up snake
+	snake.position_at_random();
+	snake.spot_mouse(&mouse);
+	nut.place_nut();
 }
 
 void Game::process_input(const int key)
 {
-   mouse.scamper(key);
-   snake.chase_mouse();
-   apply_rules();
+	mouse.scamper(key);
+	snake.chase_mouse();
+	apply_rules();
 }
 
 vector<vector<char>> Game::prepare_grid() const
 {
-   // create the 2D grid
-   vector<vector<char>> grid;
+	// create the 2D grid
+	vector<vector<char>> grid;
 
-   // for each row
-   for (int row = 1; row <= SIZE; ++row)
-   {
-      // create a row to add to the 2D grid
-      vector<char> line;
+	// for each row
+	for (int row = 1; row <= SIZE; ++row)
+	{
+		// create a row to add to the 2D grid
+		vector<char> line;
 
-      // for each column
-      for (int col = 1; col <= SIZE; ++col)
-      {
-         // is the snake at this position?
-         if (row == snake.get_y() && col == snake.get_x())
-            line.push_back(snake.get_symbol());
-         
-         // is the mouse at this position?
-         else if (row == mouse.get_y() && col == mouse.get_x())
-         {
-            line.push_back(mouse.get_symbol());
-         }
-		 else if (row == nut.get_y() && col == nut.get_x())
-		 {
-			 line.push_back(nut.get_symbol());
-		 }
-         else
-         {
-            // is there a hole at this position?
-            const int hole_no = find_hole_number_at_position(col, row);
+		// for each column
+		for (int col = 1; col <= SIZE; ++col)
+		{
+			// is the snake at this position?
+			if (row == snake.get_y() && col == snake.get_x())
+				line.push_back(snake.get_symbol());
 
-            if (hole_no != -1)
-            {
-               line.push_back(underground.get_hole_no(hole_no).get_symbol());
-            }
-            else
-            {
-               // none of the above, must be nothing at this position
-               line.push_back(FREECELL);
-            }
-         }
-      }
+			// is the mouse at this position?
+			else if (row == mouse.get_y() && col == mouse.get_x())
+			{
+				line.push_back(mouse.get_symbol());
+			}
+			// is the nut at this position?
 
-      // now that the row is full, add it to the 2D grid
-      grid.push_back(line);
-   }
+			else if (row == nut.get_y() && col == nut.get_x() && nut.has_been_collected() == false)
+			{
+				line.push_back(nut.get_symbol());
+			}
 
-   return grid;
+			else
+			{
+				// is there a hole at this position?
+				const int hole_no = find_hole_number_at_position(col, row);
+
+				if (hole_no != -1)
+				{
+					line.push_back(underground.get_hole_no(hole_no).get_symbol());
+				}
+				else
+				{
+					// none of the above, must be nothing at this position
+					line.push_back(FREECELL);
+				}
+			}
+		}
+
+		// now that the row is full, add it to the 2D grid
+		grid.push_back(line);
+	}
+
+	return grid;
 }
 
 int Game::find_hole_number_at_position(const int x, const int y) const
 {
-   for (int h_no = 0; h_no < underground.holes.size(); ++h_no)
-   {
-      if (underground.get_hole_no(h_no).is_at_position(x, y))
-      {
-         return h_no;
-      }
-   }
+	for (int h_no = 0; h_no < underground.holes.size(); ++h_no)
+	{
+		if (underground.get_hole_no(h_no).is_at_position(x, y))
+		{
+			return h_no;
+		}
+	}
 
-   return -1; // not a hole
+	return -1; // not a hole
 }
 
 void Game::apply_rules()
 {
-   if (snake.has_caught_mouse())
-   {
-      mouse.die();
-   }
-   else
-   {
-      if (mouse.has_reached_a_hole(underground))
-      {
-         mouse.escape_into_hole();
-      }
-   }
+	if (snake.has_caught_mouse())
+	{
+		mouse.die();
+	}
+	else if (mouse.has_eaten_nut(&nut))
+	{
+		nut.set_collected(true);
+		nut.~Nut();
+	}
+	if (mouse.has_reached_a_hole(underground))
+	{
+		if (nut.has_been_collected() == true)
+		{
+			mouse.escape_into_hole(); // only go into hole if nut has been collected
+		}
+	}
 }
 
 bool Game::is_running() const
 {
-   return mouse.is_alive() && !mouse.has_escaped();
+	return mouse.is_alive() && !mouse.has_escaped();
 }
 
 string Game::get_end_reason() const
 {
-   if (mouse.has_escaped())
-      return "You escaped underground!";
+	if (mouse.has_escaped())
+		return "You escaped underground!";
 
-   return "The snake ate you!";
+	return "The snake ate you!";
 }

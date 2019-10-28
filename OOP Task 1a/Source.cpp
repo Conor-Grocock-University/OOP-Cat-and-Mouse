@@ -28,7 +28,7 @@ int main()
 
 		const int cellSize = (int)((float)GetScreenHeight() / (float)(SIZE));
 
-		const auto grid = game.prepare_grid();
+		const auto grid = game.prepare_grid(); // updating the grid
 
 		for (int x = 0; x < SIZE; x++)
 		{
