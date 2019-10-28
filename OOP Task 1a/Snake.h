@@ -6,16 +6,21 @@
 class Snake {
 	public:
 		Snake();
-        ~Snake();
-		bool is_at_position(int x, int y);  
-		bool has_caught_mouse() ;
+
+		bool is_at_position(int x, int y) const;  
+		bool has_caught_mouse() const;
 		void spot_mouse(Mouse* p_mouse);
 		void chase_mouse();
-		void set_direction(int& dx, int& dy);
+		void set_direction(int& dx, int& dy) const;
 		void position_at_random();
 		void update_position(int dx, int dy);
-		char symbol;
-		int x, y;
-		Mouse* p_mouse;
-		RandomNumberGenerator rng;
+
+        int get_x() const;
+        int get_y() const;
+        char get_symbol() const;
+		
+    private:
+        const char symbol;
+        int x, y;
+        Mouse* p_mouse;
 };

@@ -1,22 +1,22 @@
 #include "Underground.h"
 
-Hole::Hole()
+Hole::Hole() : symbol(HOLE)
 {
 }
 
-Hole::Hole(int x, int y)
+Hole::Hole(const int x, const int y): symbol(HOLE)
 {
-	symbol = HOLE;
+	
 	this->x = x;
 	this->y = y;
 }
 
-int Hole::get_x()
+int Hole::get_x() const
 {
 	return x;
 }
 
-int Hole::get_y()
+int Hole::get_y() const
 {
 	return y;
 }
@@ -26,7 +26,7 @@ char Hole::get_symbol() const
 	return symbol;
 }
 
-bool Hole::is_at_position(int x, int y)
+bool Hole::is_at_position(const int x, const int y) const
 {
 	return this->x == x && this->y == y;
 }
@@ -38,7 +38,7 @@ Underground::Underground() : holes(MAXHOLES)
 {
 }
 
-Hole Underground::get_hole_no(int no) const
+Hole Underground::get_hole_no(const int no) const
 {
 	// pre-condition: valid hole number
 	assert(is_valid_hole_number(no));
@@ -46,12 +46,12 @@ Hole Underground::get_hole_no(int no) const
 	return holes.at(no);
 }
 
-void Underground::set_hole_no_at_position(int no, int x, int y)
+void Underground::set_hole_no_at_position(const int no, const int x, const int y)
 {
 	// pre-condition: valid hole number
 	assert(is_valid_hole_number(no));
 
-	Hole h(x, y);
+    const Hole h(x, y);
 
 	switch (no)
 	{
@@ -64,4 +64,18 @@ void Underground::set_hole_no_at_position(int no, int x, int y)
 bool Underground::is_valid_hole_number(int no) const
 {
 	return no >= 0 && no < (int)holes.size();
+}
+
+bool Underground::is_at_hole(const int x, const int y) const
+{
+    for (int h_no = 0; h_no < (int)holes.size(); ++h_no)
+    {
+        Hole h = get_hole_no(h_no);
+
+        if (h.is_at_position(x, y))
+        {
+            return true;
+        }
+    }
+    return false;
 }

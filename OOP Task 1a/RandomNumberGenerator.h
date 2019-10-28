@@ -10,12 +10,12 @@ class RandomNumberGenerator
 {
 	public:
 		// constructors
-		RandomNumberGenerator();
+		// RandomNumberGenerator();
 
 		// accessors
-		int get_random_value(int) const;
+        static int get_random_value(int);
 
 	private:
 		// supporting functions
-		void seed();
+        static void seed();
 };

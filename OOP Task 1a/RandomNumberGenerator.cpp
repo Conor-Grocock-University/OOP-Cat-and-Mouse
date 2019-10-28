@@ -1,13 +1,11 @@
 #include "RandomNumberGenerator.h" 
 #include <ctime>
+#include <time.h>
 
-RandomNumberGenerator::RandomNumberGenerator()
-{
-	seed();
-}
 
-int RandomNumberGenerator::get_random_value(int max) const
+int RandomNumberGenerator::get_random_value(int max)
 {
+    seed();
 	// produce a random number in range [1..max]
 	return (rand() % max) + 1;
 }

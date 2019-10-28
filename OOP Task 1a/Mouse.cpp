@@ -5,12 +5,12 @@ Mouse::Mouse() : symbol(MOUSE), x(0), y(0), alive(true), escaped(false), mouse_d
    position_in_middle_of_grid();
 }
 
-int Mouse::get_x()
+int Mouse::get_x() const
 {
    return x;
 }
 
-int Mouse::get_y()
+int Mouse::get_y() const
 {
    return y;
 }
@@ -20,7 +20,7 @@ char Mouse::get_symbol() const
    return symbol;
 }
 
-bool Mouse::is_at_position(int x, int y)
+bool Mouse::is_at_position(const int x, const int y) const
 {
    return this->x == x && this->y == y;
 }
@@ -35,19 +35,9 @@ bool Mouse::has_escaped() const
    return escaped;
 }
 
-bool Mouse::has_reached_a_hole(Underground ug)
+bool Mouse::has_reached_a_hole(const Underground ug) const
 {
-   for (int h_no = 0; h_no < (int) ug.holes.size(); ++h_no)
-   {
-      Hole h = ug.get_hole_no(h_no);
-
-      if (is_at_position(h.get_x(), h.get_y()))
-      {
-         return true;
-      }
-   }
-
-   return false;
+   return ug.is_at_hole(x, y);
 }
 
 void Mouse::die()
@@ -60,7 +50,7 @@ void Mouse::escape_into_hole()
    escaped = true;
 }
 
-void Mouse::scamper(int key)
+void Mouse::scamper(const int key)
 {
    switch (key)
    {
@@ -92,7 +82,7 @@ void Mouse::scamper(int key)
    }
 }
 
-void Mouse::update_position(int dx, int dy)
+void Mouse::update_position(const int dx, const int dy)
 {
    x += dx;
    y += dy;

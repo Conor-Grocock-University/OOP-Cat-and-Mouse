@@ -3,28 +3,22 @@
 #include "Mouse.h"
 #include "RandomNumberGenerator.h"
 
-Snake::Snake()
+Snake::Snake() : symbol(SNAKEHEAD)
 {
-	symbol = SNAKEHEAD;
 	position_at_random();
 
 	// make the pointer safe before the snake spots the mouse
 	p_mouse = nullptr;
 }
 
-Snake::~Snake()
-{
-
-}
-
-bool Snake::is_at_position(int x, int y)
+bool Snake::is_at_position(const int x, const int y) const
 {
 	return (this->x == x) && (this->y == y);
 }
 
-bool Snake::has_caught_mouse()
+bool Snake::has_caught_mouse() const
 {
-	return is_at_position(p_mouse->x, p_mouse->y);
+	return is_at_position(p_mouse->get_x(), p_mouse->get_y());
 }
 
 void Snake::spot_mouse(Mouse* p_mouse)
@@ -46,7 +40,7 @@ void Snake::chase_mouse()
 	update_position(snake_dx, snake_dy);
 }
 
-void Snake::set_direction(int& dx, int& dy)
+void Snake::set_direction(int& dx, int& dy) const
 {
 	// pre-condition: The snake needs to know where the mouse is 
 	assert(p_mouse != nullptr);
@@ -66,16 +60,29 @@ void Snake::set_direction(int& dx, int& dy)
 		dy = -1;						       // snake should move up
 }
 
-void Snake::update_position(int dx, int dy)
+void Snake::update_position(const int dx, const int dy)
 {
 	x += dx;
 	y += dy;
+}
+
+int Snake::get_x() const
+{
+    return this->x;
+}
+int Snake::get_y() const
+{
+    return this->y;
+}
+char Snake::get_symbol() const
+{
+    return this->symbol;
 }
 
 void Snake::position_at_random()
 {
 	// WARNING: this may place on top of other things
 
-	x = rng.get_random_value(SIZE);
-	y = rng.get_random_value(SIZE);
+	x = RandomNumberGenerator::get_random_value(SIZE);
+	y = RandomNumberGenerator::get_random_value(SIZE);
 }

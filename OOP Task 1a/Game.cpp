@@ -14,14 +14,14 @@ void Game::set_up()
    snake.spot_mouse(&mouse);
 }
 
-void Game::process_input(int key)
+void Game::process_input(const int key)
 {
    mouse.scamper(key);
    snake.chase_mouse();
    apply_rules();
 }
 
-vector<vector<char>> Game::prepare_grid()
+vector<vector<char>> Game::prepare_grid() const
 {
    // create the 2D grid
    vector<vector<char>> grid;
@@ -36,10 +36,9 @@ vector<vector<char>> Game::prepare_grid()
       for (int col = 1; col <= SIZE; ++col)
       {
          // is the snake at this position?
-         if (row == snake.y && col == snake.x)
-         {
-            line.push_back(snake.symbol);
-         }
+         if (row == snake.get_y() && col == snake.get_x())
+            line.push_back(snake.get_symbol());
+         
          // is the mouse at this position?
          else if (row == mouse.get_y() && col == mouse.get_x())
          {
@@ -69,9 +68,9 @@ vector<vector<char>> Game::prepare_grid()
    return grid;
 }
 
-int Game::find_hole_number_at_position(int x, int y)
+int Game::find_hole_number_at_position(const int x, const int y) const
 {
-   for (size_t h_no = 0; h_no < underground.holes.size(); ++h_no)
+   for (int h_no = 0; h_no < underground.holes.size(); ++h_no)
    {
       if (underground.get_hole_no(h_no).is_at_position(x, y))
       {
@@ -97,12 +96,12 @@ void Game::apply_rules()
    }
 }
 
-bool Game::is_running()
+bool Game::is_running() const
 {
    return mouse.is_alive() && !mouse.has_escaped();
 }
 
-string Game::get_end_reason()
+string Game::get_end_reason() const
 {
    if (mouse.has_escaped())
       return "You escaped underground!";
