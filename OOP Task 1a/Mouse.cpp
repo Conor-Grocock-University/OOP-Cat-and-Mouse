@@ -1,4 +1,5 @@
 #include "Mouse.h"
+#include "Nut.h"
 
 Mouse::Mouse() : symbol(MOUSE), x(0), y(0), alive(true), escaped(false), mouse_dx(0), mouse_dy(0)
 {
@@ -23,6 +24,12 @@ char Mouse::get_symbol() const
 bool Mouse::is_at_position(const int x, const int y) const
 {
    return this->x == x && this->y == y;
+}
+
+bool Mouse::has_eaten_nut(Nut* nut)
+{
+	bool has_eaten_nut = is_at_position(nut->get_x(), nut->get_y()); // if the mouse location is same as nut;
+	return has_eaten_nut;
 }
 
 bool Mouse::is_alive() const

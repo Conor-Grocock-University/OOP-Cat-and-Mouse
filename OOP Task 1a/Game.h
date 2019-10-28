@@ -7,6 +7,7 @@
 #include "Mouse.h"
 #include "Snake.h"
 #include "Underground.h"
+#include "Nut.h"
 #include "Player.h"
 
 using namespace std;
@@ -15,6 +16,7 @@ class Game
 {
 
 public:
+	  Nut nut;
     Mouse mouse;
     Snake snake;
     Player* player = nullptr;

@@ -2,6 +2,7 @@
 
 #include "constants.h"
 #include "Underground.h"
+#include "Nut.h"
 
 class Mouse
 {
@@ -18,6 +19,7 @@ class Mouse
 		bool is_alive() const;
 		bool has_escaped() const;
 		bool has_reached_a_hole(const Underground ug) const;
+		bool has_eaten_nut(Nut* nut);
 
 		// mutators
 		void die();
@@ -28,6 +30,7 @@ class Mouse
 	private:
 		const char symbol;
 		int  x, y;
+		Nut* nut;
 
 		// data members
 		bool alive;
