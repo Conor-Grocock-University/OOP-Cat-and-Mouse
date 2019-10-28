@@ -12,6 +12,7 @@ void Game::set_up()
    // set up snake
    snake.position_at_random();
    snake.spot_mouse(&mouse);
+  
 }
 
 void Game::process_input(const int key)
