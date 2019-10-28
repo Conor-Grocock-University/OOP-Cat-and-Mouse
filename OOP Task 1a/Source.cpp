@@ -43,6 +43,7 @@ int main()
 					case SNAKEHEAD:  DrawRectangle(xPosition, yPosition, cellSize, cellSize, RED);       break;
 					case MOUSE:      DrawRectangle(xPosition, yPosition, cellSize, cellSize, GREEN);     break;
 					case FREECELL:   DrawRectangle(xPosition, yPosition, cellSize, cellSize, DARKGREEN); break;
+					case NUT:        DrawRectangle(xPosition, yPosition, cellSize, cellSize, BROWN);	 break;
 					default:         assert(false); // if this assert triggers there's an unrecognised tile on the grid!
 				}
 

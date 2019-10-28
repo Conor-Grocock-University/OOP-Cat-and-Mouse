@@ -1,8 +1,9 @@
 #include "Nut.h"
+#include "Constants.h"
 
-Nut::Nut() : x(10), y(5), symbol(NUT)
+Nut::Nut() : symbol(NUT)
 {
-
+	place_nut();
 }
 Nut::~Nut()
 {
@@ -11,20 +12,21 @@ Nut::~Nut()
 
 int Nut::get_x() const
 {
-	return x;
+	return this->x;
 }
 
 int Nut::get_y() const
 {
-	return y;
+	return this->x;
 }
 
 char Nut::get_symbol() const
 {
-	return symbol;
+	return this->symbol;
 }
 
-/*bool Nut::has_been_collected(const int x, const int y) const
+/*
+bool Nut::has_been_collected(const int x, const int y) const
 {
 
 }
@@ -32,9 +34,10 @@ char Nut::get_symbol() const
 bool Nut::is_at_position(const int x, const int y) const
 {
 
-}*/
-
+}
+*/
 void Nut::place_nut()
 {
-
+	x = 10;
+	y = 5;
 }

@@ -6,13 +6,13 @@ void Game::set_up()
    underground.set_hole_no_at_position(0, 4, 3);
    underground.set_hole_no_at_position(1, 15, 10);
    underground.set_hole_no_at_position(2, 7, 15);
-
+   
    // mouse state already set up in its contructor
 
    // set up snake
    snake.position_at_random();
    snake.spot_mouse(&mouse);
-  
+   nut.place_nut();
 }
 
 void Game::process_input(const int key)
@@ -45,6 +45,10 @@ vector<vector<char>> Game::prepare_grid() const
          {
             line.push_back(mouse.get_symbol());
          }
+		 else if (row == nut.get_y() && col == nut.get_x())
+		 {
+			 line.push_back(nut.get_symbol());
+		 }
          else
          {
             // is there a hole at this position?
