@@ -1,9 +1,10 @@
 #include "Snake.h"
 #include "Constants.h"
 #include "Mouse.h"
+#include "Tail.h"
 #include "RandomNumberGenerator.h"
 
-Snake::Snake() : symbol(SNAKEHEAD)
+Snake::Snake() : symbol(SNAKEHEAD), tail()
 {
 	position_at_random();
 
@@ -62,8 +63,19 @@ void Snake::set_direction(int& dx, int& dy) const
 
 void Snake::update_position(const int dx, const int dy)
 {
+    move_tail();
 	x += dx;
 	y += dy;
+}
+
+void Snake::move_tail()
+{
+    while (tail.size() > 2)
+    {
+        tail.erase(tail.begin());
+    }
+    Tail tailSegment(x, y);
+    tail.push_back(tailSegment);
 }
 
 int Snake::get_x() const
@@ -74,6 +86,12 @@ int Snake::get_y() const
 {
     return this->y;
 }
+
+vector<Tail> Snake::get_tail() const
+{
+    return this->tail;
+}
+
 char Snake::get_symbol() const
 {
     return this->symbol;

@@ -6,6 +6,7 @@
 
 #include "Mouse.h"
 #include "Snake.h"
+#include "Tail.h"
 #include "Underground.h"
 
 using namespace std;
@@ -15,6 +16,7 @@ class Game
 public:
       Mouse mouse;
       Snake snake;
+      Tail tail;
       Underground underground;
 
 public:

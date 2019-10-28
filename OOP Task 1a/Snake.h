@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Mouse.h"
+#include "Tail.h"
 #include "RandomNumberGenerator.h"
 
 class Snake {
@@ -14,13 +15,16 @@ class Snake {
 		void set_direction(int& dx, int& dy) const;
 		void position_at_random();
 		void update_position(int dx, int dy);
-
+        void move_tail();
+        
         int get_x() const;
         int get_y() const;
+        vector<Tail> get_tail() const;
         char get_symbol() const;
 		
     private:
         const char symbol;
         int x, y;
         Mouse* p_mouse;
+        vector<Tail> tail;
 };

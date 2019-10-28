@@ -6,6 +6,7 @@
 // symbols used for storing where things are
 #define SNAKEHEAD 'S'
 #define MOUSE     'M'
+#define TAIL      'T'
 #define HOLE      'H'
 #define FREECELL  '.'
 
