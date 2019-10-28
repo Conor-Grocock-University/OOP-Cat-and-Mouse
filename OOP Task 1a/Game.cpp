@@ -1,7 +1,11 @@
 #include "Game.h"
+#include "Player.h"
+#include <iostream>
 
 void Game::set_up()
 {
+
+
    // set up the holes
    underground.set_hole_no_at_position(0, 4, 3);
    underground.set_hole_no_at_position(1, 15, 10);
@@ -86,12 +90,14 @@ void Game::apply_rules()
    if (snake.has_caught_mouse())
    {
       mouse.die();
+       player->update_score(-1);
    }
    else
    {
       if (mouse.has_reached_a_hole(underground))
       {
          mouse.escape_into_hole();
+         player->update_score(1);
       }
    }
 }
@@ -107,4 +113,10 @@ string Game::get_end_reason() const
       return "You escaped underground!";
 
    return "The snake ate you!";
+}
+
+
+Game::Game(Player *newPlayer)
+{
+    player = newPlayer;
 }

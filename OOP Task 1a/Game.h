@@ -7,15 +7,18 @@
 #include "Mouse.h"
 #include "Snake.h"
 #include "Underground.h"
+#include "Player.h"
 
 using namespace std;
 
 class Game
 {
+
 public:
-      Mouse mouse;
-      Snake snake;
-      Underground underground;
+    Mouse mouse;
+    Snake snake;
+    Player* player = nullptr;
+    Underground underground;
 
 public:
       void set_up();
@@ -25,4 +28,8 @@ public:
       bool is_running() const;
       int find_hole_number_at_position(int x, int y) const;
       string get_end_reason() const;
+
+public:
+    Game();
+    Game(Player *player);
 };
