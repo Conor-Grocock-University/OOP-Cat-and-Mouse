@@ -41,7 +41,6 @@ bool Nut::has_been_collected() const
 	return this->collected;
 }
 
-
 void Nut::place_nut()
 {
 	x = 17;

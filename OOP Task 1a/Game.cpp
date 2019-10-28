@@ -1,4 +1,6 @@
 #include "Game.h"
+#include "Player.h"
+#include <iostream>
 
 void Game::set_up()
 {
@@ -94,6 +96,7 @@ void Game::apply_rules()
 	if (snake.has_caught_mouse())
 	{
 		mouse.die();
+       player->update_score(-1);
 	}
 	else if (mouse.has_eaten_nut(&nut))
 	{
@@ -105,6 +108,8 @@ void Game::apply_rules()
 		if (nut.has_been_collected() == true)
 		{
 			mouse.escape_into_hole(); // only go into hole if nut has been collected
+      
+         player->update_score(1);
 		}
 	}
 }
@@ -119,5 +124,11 @@ string Game::get_end_reason() const
 	if (mouse.has_escaped())
 		return "You escaped underground!";
 
-	return "The snake ate you!";
+   return "The snake ate you!";
+}
+
+
+Game::Game(Player *newPlayer)
+{
+    player = newPlayer;
 }
