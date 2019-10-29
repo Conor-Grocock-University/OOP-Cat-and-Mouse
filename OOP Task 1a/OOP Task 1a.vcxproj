@@ -22,11 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{72456D60-753A-4C75-9C3B-BA8987E17990}</ProjectGuid>
     <RootNamespace>OOPTask1a</RootNamespace>
-<<<<<<< HEAD
     <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
-=======
-    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
->>>>>>> master
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

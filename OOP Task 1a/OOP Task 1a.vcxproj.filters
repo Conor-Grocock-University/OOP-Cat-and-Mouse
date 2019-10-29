@@ -12,52 +12,6 @@
     <ClCompile Include="Underground.cpp" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-    <ClInclude Include="Constants.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Mouse.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RandomNumberGenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Snake.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Underground.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tail.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Mouse.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RandomNumberGenerator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Snake.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Underground.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Tail.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-=======
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Mouse.h" />
@@ -70,7 +24,6 @@
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\raylib\lib\raylib_static.lib" />
->>>>>>> master
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
