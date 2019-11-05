@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>		
-#include <assert.h>	
+#include <cassert>	
 #include <vector>
 
 #include "Mouse.h"
