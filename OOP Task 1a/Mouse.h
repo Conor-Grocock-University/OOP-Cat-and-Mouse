@@ -3,19 +3,20 @@
 #include "constants.h"
 #include "Underground.h"
 #include "Nut.h"
+#include "MoveableGridItem.h"
 
-class Mouse
+class Mouse : public MoveableGridItem
 {
 	public:
 		// constructor
 		Mouse();
 
-		// accessors
-		int get_x() const;
-		int get_y() const;
-		char get_symbol() const;
+		//// accessors
+		//int get_x() const;
+		//int get_y() const;
+		//char get_symbol() const;
 
-		bool is_at_position(int x, int y) const;
+		//bool is_at_position(int x, int y) const;
 		bool is_alive() const;
 		bool has_escaped() const;
 		bool has_reached_a_hole(const Underground ug) const;
@@ -28,8 +29,6 @@ class Mouse
 
 
 	private:
-		const char symbol;
-		int  x, y;
 		Nut* nut;
 
 		// data members
@@ -39,6 +38,6 @@ class Mouse
 		int mouse_dy;
 
 		// supporting functions 
-		void position_in_middle_of_grid();
-		void update_position(int dx, int dy);
+		//void position_in_middle_of_grid();
+		//void update_position(int dx, int dy);
 };

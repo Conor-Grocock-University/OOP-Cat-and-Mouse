@@ -4,22 +4,18 @@
 #include "Tail.h"
 #include "RandomNumberGenerator.h"
 
-Snake::Snake() : symbol(SNAKEHEAD), tail()
+Snake::Snake() : MoveableGridItem(SNAKEHEAD), tail()
 {
 	position_at_random();
-
-	// make the pointer safe before the snake spots the mouse
+    
+	// make the pointer safe before the snake spots the mouse 
 	p_mouse = nullptr;
-}
-
-bool Snake::is_at_position(const int x, const int y) const
-{
-	return (this->x == x) && (this->y == y);
 }
 
 bool Snake::has_caught_mouse() const
 {
 	return is_at_position(p_mouse->get_x(), p_mouse->get_y());
+
 }
 
 void Snake::spot_mouse(Mouse* p_mouse)
@@ -50,23 +46,17 @@ void Snake::set_direction(int& dx, int& dy) const
 	dx = 0; dy = 0;
 
 	// update coordinate if necessary
-	if (x < p_mouse->get_x())         // if snake on left of mouse
+	if (get_x() < p_mouse->get_x())         // if snake on left of mouse
 		dx = 1;                        // snake should move right
-	else if (x > p_mouse->get_x())    // if snake on left of mouse
+	else if (get_x() > p_mouse->get_x())    // if snake on left of mouse
 		dx = -1;						       // snake should move left
 
-	if (y < p_mouse->get_y())         // if snake is above mouse
+	if (get_y() < p_mouse->get_y())         // if snake is above mouse
 		dy = 1;                        // snake should move down
-	else if (y > p_mouse->get_y())    // if snake is below mouse
+	else if (get_y() > p_mouse->get_y())    // if snake is below mouse
 		dy = -1;						       // snake should move up
 }
 
-void Snake::update_position(const int dx, const int dy)
-{
-    move_tail();
-	x += dx;
-	y += dy;
-}
 
 void Snake::move_tail()
 {
@@ -74,33 +64,21 @@ void Snake::move_tail()
     {
         tail.erase(tail.begin());
     }
-    Tail tailSegment(x, y);
+    Tail tailSegment(get_x(), get_y());
     tail.push_back(tailSegment);
 }
 
-int Snake::get_x() const
-{
-    return this->x;
-}
-int Snake::get_y() const
-{
-    return this->y;
-}
 
 vector<Tail> Snake::get_tail() const
 {
     return this->tail;
 }
 
-char Snake::get_symbol() const
-{
-    return this->symbol;
-}
 
 void Snake::position_at_random()
 {
 	// WARNING: this may place on top of other things
-
-	x = RandomNumberGenerator::get_random_value(SIZE);
-	y = RandomNumberGenerator::get_random_value(SIZE);
+    x = RandomNumberGenerator::get_random_value(SIZE);
+    y = RandomNumberGenerator::get_random_value(SIZE);
 }
+

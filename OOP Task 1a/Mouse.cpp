@@ -1,30 +1,30 @@
 #include "Mouse.h"
 #include "Nut.h"
 
-Mouse::Mouse() : symbol(MOUSE), x(0), y(0), alive(true), escaped(false), mouse_dx(0), mouse_dy(0)
+Mouse::Mouse() : MoveableGridItem(MOUSE), alive(true), escaped(false), mouse_dx(0), mouse_dy(0)
 {
-   position_in_middle_of_grid();
+    reset_position(x,y);
 }
 
-int Mouse::get_x() const
-{
-   return x;
-}
-
-int Mouse::get_y() const
-{
-   return y;
-}
-
-char Mouse::get_symbol() const
-{
-   return symbol;
-}
-
-bool Mouse::is_at_position(const int x, const int y) const
-{
-   return this->x == x && this->y == y;
-}
+//int Mouse::get_x() const
+//{
+//   return x;
+//}
+//
+//int Mouse::get_y() const
+//{
+//   return y;
+//}
+//
+//char Mouse::get_symbol() const
+//{
+//   return symbol;
+//}
+//
+//bool Mouse::is_at_position(const int x, const int y) const
+//{
+//   return this->x == x && this->y == y;
+//}
 
 bool Mouse::has_eaten_nut(Nut* nut)
 {
@@ -62,20 +62,16 @@ void Mouse::scamper(const int key)
    switch (key)
    {
       case KEY_LEFT:
-         mouse_dx = -1;
-         mouse_dy = 0;
+         this->update_position(-1,0);
          break;
       case KEY_RIGHT:
-         mouse_dx = +1;
-         mouse_dy = 0;
+          this->update_position(+1, 0);
          break;
       case KEY_UP:
-         mouse_dx = 0;
-         mouse_dy = -1;
+          this->update_position(0, -1);
          break;
       case KEY_DOWN:
-         mouse_dx = 0;
-         mouse_dy = +1;
+          this->update_position(0, +1);
          break;
       default:
          // not a key we care about, so do nothing
@@ -89,14 +85,14 @@ void Mouse::scamper(const int key)
    }
 }
 
-void Mouse::update_position(const int dx, const int dy)
-{
-   x += dx;
-   y += dy;
-}
+//void Mouse::update_position(const int dx, const int dy)
+//{
+//   x += dx;
+//   y += dy;
+//}
 
-void Mouse::position_in_middle_of_grid()
-{
-   x = SIZE / 2;
-   y = SIZE / 2;
-}
+//void Mouse::position_in_middle_of_grid()
+//{
+//   x = SIZE / 2;
+//   y = SIZE / 2;
+//}
