@@ -1,6 +1,8 @@
 #include "Nut.h"
 #include "Constants.h"
 #include "MoveableGridItem.h"
+#include <random>
+#include <stdlib.h>     /* srand, rand */
 
 Nut::Nut() : MoveableGridItem(NUT)
 {
@@ -44,5 +46,8 @@ bool Nut::has_been_collected() const
 
 void Nut::place_nut()
 {
-    update_position(17,8);
+
+	int randX = rand() % 9;
+	int randY = rand() % 9;
+    update_position(randX,randY);
 }
