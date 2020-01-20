@@ -19,10 +19,27 @@ void Game::set_up()
 
 void Game::process_input(const int key)
 {
+    if (key == CHEAT)
+    {
+        if (cheatEnabled == false)
+        {
+            cheatEnabled = true;
+        }
+        else
+        {
+            cheatEnabled = false;
+        }
+    }
+
     mouse.scamper(key);
-    snake.chase_mouse();
+    if (cheatEnabled != true)
+    {
+     snake.chase_mouse();
+    }
     apply_rules();
 }
+
+
 
 bool valid_tail(vector<Tail> tails, int x, int y) {
     for (int i = 0; i < tails.size(); i++)

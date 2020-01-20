@@ -40,10 +40,15 @@ int main()
 			    if (IsKeyPressed(KEY_LEFT))   game.process_input(KEY_LEFT);
 			    if (IsKeyPressed(KEY_UP))     game.process_input(KEY_UP);
 			    if (IsKeyPressed(KEY_DOWN))   game.process_input(KEY_DOWN);
+                if (IsKeyPressed(CHEAT))      game.process_input(CHEAT);
 
-
+                
                 DrawText(game.player->get_name().c_str(), 610, 30, 20, LIGHTGRAY);
                 DrawText(std::to_string(game.player->get_score()).c_str(), 610, 50, 20, LIGHTGRAY);
+                if(game.cheatEnabled == true)
+                {
+                    DrawText("Cheat Mode Enabled", 610, 80, 20, RED);
+                }
 		    }
 		    else
 		    {
@@ -53,7 +58,7 @@ int main()
                     
 
 		    const int cellSize = (int)((float)GetScreenHeight() / (float)(SIZE));
-
+            
 		    const auto grid = game.prepare_grid();
 
 		    for (int x = 0; x < SIZE; x++)

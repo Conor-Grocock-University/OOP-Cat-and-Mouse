@@ -32,6 +32,7 @@ public:
       bool is_running() const;
       int find_hole_number_at_position(int x, int y) const;
       string get_end_reason() const;
+      bool cheatEnabled = false;
 
 public:
     Game();
