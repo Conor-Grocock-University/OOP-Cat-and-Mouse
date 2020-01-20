@@ -110,15 +110,23 @@ void Game::apply_rules()
     else if (mouse.has_eaten_nut(&nut))
     {
         nut.set_collected(true);
-        nut.~Nut();
     }
     if (mouse.has_reached_a_hole(underground))
     {
-        if (nut.has_been_collected() == true)
+        if (nut.has_been_collected())
         {
             mouse.escape_into_hole(); // only go into hole if nut has been collected
 
             player->update_score(1);
+        } else
+        {
+            Hole hole;
+            do
+            {
+                hole = underground.get_random_hole();
+            } while (hole.get_x() == mouse.get_x() && hole.get_y() == mouse.get_y());
+
+            mouse.set_position(hole.get_x(), hole.get_y());
         }
     }
 }

@@ -4,7 +4,7 @@
 #include "Tail.h"
 #include "RandomNumberGenerator.h"
 
-Snake::Snake() : MoveableGridItem(SNAKEHEAD), tail()
+Snake::Snake() : MoveableGridItem(SNAKEHEAD)
 {
 	position_at_random();
     

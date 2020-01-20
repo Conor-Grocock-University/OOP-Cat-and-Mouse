@@ -32,7 +32,8 @@ class Underground
 		Underground();
 		Hole get_hole_no(int no) const;
 		void set_hole_no_at_position(int no, int x, int y);
-		bool is_valid_hole_number(int n) const;
+        Hole get_random_hole();
+        bool is_valid_hole_number(int n) const;
 
         bool is_at_hole(int x, int y) const;
 
