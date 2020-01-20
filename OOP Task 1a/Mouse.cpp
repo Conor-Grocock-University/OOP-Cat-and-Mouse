@@ -42,9 +42,9 @@ bool Mouse::has_escaped() const
    return escaped;
 }
 
-bool Mouse::has_reached_a_hole(const Underground ug) const
+bool Mouse::has_reached_a_hole(const Underground& underground) const
 {
-   return ug.is_at_hole(x, y);
+   return underground.is_at_hole(x, y);
 }
 
 void Mouse::die()

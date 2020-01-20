@@ -19,7 +19,7 @@ class Mouse : public MoveableGridItem
 		//bool is_at_position(int x, int y) const;
 		bool is_alive() const;
 		bool has_escaped() const;
-		bool has_reached_a_hole(const Underground ug) const;
+		bool has_reached_a_hole(const Underground& underground) const;
 		bool has_eaten_nut(Nut* nut);
 
 		// mutators
@@ -27,8 +27,7 @@ class Mouse : public MoveableGridItem
 		void escape_into_hole();
 		void scamper(int key);
 
-
-	private:
+    private:
 		Nut* nut;
 
 		// data members

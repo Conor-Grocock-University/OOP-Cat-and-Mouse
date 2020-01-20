@@ -53,26 +53,27 @@ void Underground::set_hole_no_at_position(const int no, const int x, const int y
 
     const Hole h(x, y);
 
-	switch (no)
-	{
-		case 0: holes.at(0) = h; break;
-		case 1: holes.at(1) = h; break;
-		case 2: holes.at(2) = h; break;
-	}
+	holes.at(no) = h;
 }
 
-bool Underground::is_valid_hole_number(int no) const
+Hole Underground::get_random_hole()
 {
-	return no >= 0 && no < (int)holes.size();
+    const int rand = ::rand() % (MAXHOLES - 1);
+    return holes.at(rand);
+}
+
+bool Underground::is_valid_hole_number(int hole_no) const
+{
+	return hole_no >= 0 && hole_no < (int)holes.size();
 }
 
 bool Underground::is_at_hole(const int x, const int y) const
 {
     for (int h_no = 0; h_no < (int)holes.size(); ++h_no)
     {
-        Hole h = get_hole_no(h_no);
+        Hole hole = get_hole_no(h_no);
 
-        if (h.is_at_position(x, y))
+        if (hole.is_at_position(x, y))
         {
             return true;
         }
