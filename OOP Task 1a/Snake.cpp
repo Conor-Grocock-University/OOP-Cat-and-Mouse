@@ -35,6 +35,7 @@ void Snake::chase_mouse()
 
 	//go in that direction
 	update_position(snake_dx, snake_dy);
+    move_tail();
 }
 
 void Snake::set_direction(int& dx, int& dy) const
