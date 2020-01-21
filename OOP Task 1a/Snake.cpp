@@ -26,7 +26,8 @@ void Snake::spot_mouse(Mouse* p_mouse)
 	this->p_mouse = p_mouse;
 }
 
-bool Snake::valid_tail(vector<Tail> tails, int& x, int& y) const {
+bool Snake::valid_tail(vector<Tail> tails, int& x, int& y) const
+{
     for (int i = 0; i < tails.size(); i++)
     {
         Tail t = tails[i];

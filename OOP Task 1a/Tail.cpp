@@ -5,10 +5,10 @@ Tail::Tail(int x, int y):MoveableGridItem(TAIL)
 {
 }
 
-/*Tail::Tail()
+Tail::Tail():MoveableGridItem(TAIL)
 {
 }
-*/
+
 Tail::~Tail()
 {
 }
