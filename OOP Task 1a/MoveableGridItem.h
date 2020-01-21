@@ -11,7 +11,6 @@ public:
     void update_position(int dx, int dy);
     void set_position(int x, int y);
 
-protected:
     int x;
     int y;
 };

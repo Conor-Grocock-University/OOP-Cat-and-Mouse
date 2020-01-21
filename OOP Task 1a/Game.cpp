@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "Player.h"
+#include "MoveableGridItem.h"
 #include <iostream>
 
 void Game::set_up()
@@ -39,19 +40,6 @@ void Game::process_input(const int key)
     apply_rules();
 }
 
-
-
-bool valid_tail(vector<Tail> tails, int x, int y) {
-    for (int i = 0; i < tails.size(); i++)
-    {
-        Tail t = tails[i];
-        if (t.x == x && t.y == y) {
-            return true;
-        }
-    }
-    return false;
-}
-
 vector<vector<char>> Game::prepare_grid() const
 {
     // create the 2D grid
@@ -72,7 +60,7 @@ vector<vector<char>> Game::prepare_grid() const
             else if (row == mouse.get_y() && col == mouse.get_x())
                 // is the mouse at this position?
                 line.push_back(mouse.get_symbol());
-            else if (!snake.get_tail().empty() && valid_tail(snake.get_tail(), col, row))
+            else if (!snake.get_tail().empty() && snake.valid_tail(snake.get_tail(), col, row))
                 // Is the snakes tail empty, is not is the current position a part of the tail
                 line.push_back(TAIL);
             else if (row == nut.get_y() && col == nut.get_x() && !nut.has_been_collected())

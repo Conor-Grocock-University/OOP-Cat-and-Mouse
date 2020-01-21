@@ -1,13 +1,14 @@
+#include "Constants.h"
 #include "Tail.h"
 
-Tail::Tail(int x, int y): x(x), y(y)
+Tail::Tail(int x, int y):MoveableGridItem(TAIL)
 {
 }
 
-Tail::Tail()
+/*Tail::Tail()
 {
 }
-
+*/
 Tail::~Tail()
 {
 }

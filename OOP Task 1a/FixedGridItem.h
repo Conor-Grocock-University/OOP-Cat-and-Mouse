@@ -1,15 +1,16 @@
 #pragma once
 #include"GridItem.h"
-class FixedGridItem : GridItem
+class FixedGridItem : public GridItem
 {
 public:
-    int get_x();
-    int get_y();
-    bool is_at_position(int x, int y);
+    FixedGridItem(char symbol);
+    int get_x() const;
+    int get_y() const;
+    bool is_at_position(int x, int y) const;
 
-private:
-    const int x;
-    const int y;
+protected:
+   int x;
+   int y;
 };
 
 

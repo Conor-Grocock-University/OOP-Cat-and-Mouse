@@ -26,6 +26,17 @@ void Snake::spot_mouse(Mouse* p_mouse)
 	this->p_mouse = p_mouse;
 }
 
+bool Snake::valid_tail(vector<Tail> tails, int& x, int& y) {
+    for (int i = 0; i < tails.size(); i++)
+    {
+        Tail t = tails[i];
+        if (t.x == x && t.y == y) {
+            return true;
+        }
+    }
+    return false;
+}
+
 void Snake::chase_mouse()
 {
 	int snake_dx, snake_dy;
