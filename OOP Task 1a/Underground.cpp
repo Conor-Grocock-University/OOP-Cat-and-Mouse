@@ -1,14 +1,15 @@
 #include "Underground.h"
+#include "FixedGridItem.h"
 
 Hole::Hole() : FixedGridItem(HOLE)
 {
 }
 
-Hole::Hole(const int x, const int y) : FixedGridItem(HOLE)
+Hole::Hole(const int x, const int y): FixedGridItem(HOLE)
 {
-
-    this->x = x;
-    this->y = y;
+	
+	this->x = x;
+	this->y = y;
 }
 /*
 int Hole::get_x() const

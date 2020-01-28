@@ -72,7 +72,7 @@ void Snake::set_direction(int& dx, int& dy) const
 
 void Snake::move_tail()
 {
-    while (tail.size() > 2)
+    while (tail.size() > 3)
     {
         tail.erase(tail.begin());
     }

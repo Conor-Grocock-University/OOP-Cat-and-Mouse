@@ -7,18 +7,18 @@
 
 using namespace std;
 
-class Hole : public FixedGridItem
+class Hole: public FixedGridItem
 {
 public:
     // constructors
     Hole();
     Hole(int x, int y);
 
-    // assessors
-    //int get_x() const;
-    //int get_y() const;
-    //char get_symbol() const;
-    //bool is_at_position(int x, int y) const;
+		// assessors
+		//int get_x() const;
+		//int get_y() const;
+		//char get_symbol() const;
+		//bool is_at_position(int x, int y) const;
 
 private:
     // data members

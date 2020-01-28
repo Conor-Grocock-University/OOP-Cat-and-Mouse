@@ -28,7 +28,11 @@ void MoveableGridItem::reset_position(int& x, int& y) const
 
 void MoveableGridItem::update_position(int dx, int dy) 
 {
-    set_position(x + dx, y + dy);
+    if (((x + dx) >= 1) && ((x + dx) <= SIZE) && ((y + dy) >= 1) && ((y + dy) <= SIZE))
+    {
+        // update_position(mouse_dx, mouse_dy);
+        set_position(x + dx, y + dy);
+    }
 }
 
 void MoveableGridItem::set_position(int x, int y)

@@ -9,8 +9,8 @@ public:
     bool is_at_position(int x, int y) const;
 
 protected:
-   int x;
-   int y;
+     int x;
+     int y;
 };
 
 
